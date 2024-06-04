@@ -55,7 +55,7 @@ const ChatInput = () => {
   };
 
   return (
-    <div className="bg-white absolute inset-x-0 bottom-0 z-50 p-2 border-t border-gray-500">
+    <div className="bg-white fixed left-0 right-0 bottom-0 z-50 p-2 border-t border-gray-500">
       <form onSubmit={handleSubmit}>
         <div className="flex flex-1">
           <textarea
