@@ -2,7 +2,7 @@ import EmojiPicker from "emoji-picker-react";
 import { ReactComponent as EmojiIcon } from "../assets/emoji-icon.svg";
 import { useContext, useEffect, useRef, useState } from "react";
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { UserContext } from "../App";
 
 const ChatInput = () => {
@@ -38,19 +38,22 @@ const ChatInput = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      message,
-      createdAt: new Date().toLocaleString(),
-      user,
-    };
+    if (message !== "") {
+      const data = {
+        message,
+        createdAt: new Date().toLocaleString(),
+        timestamp: serverTimestamp(),
+        user,
+      };
 
-    try {
-      await addDoc(messagesDb, data);
-      setMessage("");
-      const container = chatContainerRef.current;
-      container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
-    } catch (e) {
-      console.log("Log: error", e);
+      try {
+        await addDoc(messagesDb, data);
+        setMessage("");
+        const container = chatContainerRef.current;
+        container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
+      } catch (e) {
+        console.log("Log: error", e);
+      }
     }
   };
 

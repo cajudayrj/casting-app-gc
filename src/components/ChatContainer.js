@@ -34,7 +34,7 @@ const ChatContainer = () => {
   const fetchMessages = async (fetchLimit = queryCount) => {
     const q = query(
       messagesRef,
-      orderBy("createdAt", "desc"),
+      orderBy("timestamp", "desc"),
       limit(fetchLimit)
     );
     onSnapshot(q, async (snapshot) => {

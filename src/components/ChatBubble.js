@@ -16,7 +16,7 @@ const ChatBubble = ({ user, message }) => {
       >
         <UserIcon width={40} height={40} />
         <div
-          className={`text-white ${
+          className={`text-white text-left ${
             user === message.user ? "bg-darkGray" : "bg-gray-500"
           } rounded p-4 whitespace-pre-line`}
           dangerouslySetInnerHTML={{ __html: message.message }}
