@@ -12,7 +12,6 @@ import { UserContext } from "../App";
 import ChatBubble from "./ChatBubble";
 
 const ChatContainer = () => {
-  const [loading, setLoading] = useState(true);
   const [messages, setMessages] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [queryCount, setQueryCount] = useState(10);
@@ -47,7 +46,6 @@ const ChatContainer = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
     const init = async () => {
       await fetchMessages();
       await updateTotalMessagesCount();
@@ -57,7 +55,6 @@ const ChatContainer = () => {
     setTimeout(() => {
       const container = chatContainerRef.current;
       container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
-      setLoading(false);
     }, 1000);
     // eslint-disable-next-line
   }, []);
@@ -72,7 +69,7 @@ const ChatContainer = () => {
       className="flex flex-col py-[40px] px-4 h-[calc(100vh-132px)] overflow-auto overflow-anchor-none"
       ref={chatContainerRef}
     >
-      {!loading && totalCount > messages.length && (
+      {totalCount > messages.length && (
         <button
           className="bg-blue-500 flex mx-auto p-2 rounded-md text-white text-xs"
           onClick={loadMoreMessages}
@@ -80,7 +77,7 @@ const ChatContainer = () => {
           See previous messages
         </button>
       )}
-      {!loading && totalCount <= messages.length && (
+      {totalCount <= messages.length && (
         <p className="text-gray-500 my-4 text-sm">No more messages to show.</p>
       )}
       {messages
