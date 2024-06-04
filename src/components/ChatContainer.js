@@ -69,7 +69,7 @@ const ChatContainer = () => {
 
   return (
     <div
-      className="flex flex-col py-[40px] mt-[72px] px-4 h-[calc(100vh-132px)] overflow-auto overflow-anchor-none"
+      className="flex flex-col py-[40px] px-4 h-[calc(100vh-132px)] overflow-auto overflow-anchor-none"
       ref={chatContainerRef}
     >
       {!loading && totalCount > messages.length && (

@@ -11,7 +11,7 @@ const Header = () => {
   }
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header className="relative z-50">
       <nav className="flex items-center justify-between bg-darkGray py-4 px-8">
         <div className="flex flex-1 justify-start">
           <Logo width={80} height={40} />
